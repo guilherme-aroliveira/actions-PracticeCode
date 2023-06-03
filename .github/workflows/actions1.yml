@@ -1,17 +1,15 @@
 name: First workflow
 
-on: 
-  push:
-    branches: 
-      - main
+on: push
 
 jobs:
   job1: 
     name: First job
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Step one
         uses: actions/checkout@v3
+      - run: echo $GITHUB_WORKSPACE  
 
       - name: Step two
         uses: env | sort
@@ -20,7 +18,7 @@ jobs:
     name: Second job
     runs-on: windows-latest
     steps:
-      - name: Checkout
+      - name: Step one
         uses: actions/checkout@v3
 
       - name: Step two
