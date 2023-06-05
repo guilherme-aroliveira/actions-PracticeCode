@@ -1,0 +1,44 @@
+name: Build Tomcat
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out tomcat-users.xml
+        uses: actions/checkout@v2
+
+      - name: List project files and java version
+        run: |
+          ls -ltr
+          java --version  
+
+      - name: Check out Apache Tomcat
+        uses: actions/checkout@v3
+        with:
+          repository: apache/tomcat
+          ref: master
+          path: ./tomcat
+
+      - name: Setup java
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: '17'
+          java-package: jdk
+          architecture: x64
+
+      - name: List project files and java version
+        run: |
+          ls -ltr
+          java --version
+
+      - name: Copy tomcat-users.xml into Tomcat configuration directory
+        run: cp -v tomcat-users.xml ./tomcat/conf/tomcat-users.xml
+
+      - name: Compile Tomcat
+        run: |
+          cd ./tomcat
+          ant
