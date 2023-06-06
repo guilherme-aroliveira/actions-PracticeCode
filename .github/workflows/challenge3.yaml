@@ -1,0 +1,26 @@
+name: Challenge 3
+
+on: workflow_dispatch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./python-script
+    steps:
+      - uses: actions/checkout@v3 
+      
+      - name: Run the script
+        run: python hello.py
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 
+      - uses: actions/upload-artifact@v1.0.0
+        with: 
+          name: hello
+          path: .
