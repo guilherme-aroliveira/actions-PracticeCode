@@ -1,6 +1,6 @@
 name: Pipeline
 
-on: push
+on: workflow_dispatch
 
 env:
   APPLICATION_NAME: app2
