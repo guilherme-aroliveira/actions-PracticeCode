@@ -1,0 +1,26 @@
+name: Pipeline
+
+on: push
+
+env:
+  APPLICATION_NAME: app2
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python environment
+        uses: actions/setup-python@v1
+
+      - name: Install requirements
+        run: pip install --quiet --requirement ./python-webb-app/requirements.txt
+
+      - name: Lint code
+        run: |
+          flake8 --igonre=E501,E231 *.py
+          pylint --disable=C0301 --disable=C0326 *.py
+
+      - name: Run unit tests
+        run: |
+          python -m unittest --versbose --failtast
