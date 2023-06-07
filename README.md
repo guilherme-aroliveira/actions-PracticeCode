@@ -1,4 +1,4 @@
-# Build Status Badge: ![](https://github.com/guilherme-aroliveira/actions-PracticeCode/workflows/python-pipeline/badge.svg)
+# Build Status Badge: ![](https://github.com/guilherme-aroliveira/actions-PracticeCode/workflows/Pipeline/badge.svg)
 
 # Use Case: Continuous Integration
 The repo intends to demontrating continuous integration with Github Actions and can also serve as a template for some cases
